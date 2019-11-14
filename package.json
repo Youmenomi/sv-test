@@ -1,6 +1,6 @@
 {
   "name": "sv-test",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "dependencies": {
     "commander": "^4.0.1",
     "conventional-recommended-bump": "^6.0.4",
-    "parse-git-config": "^3.0.0"
+    "parse-git-config": "^3.0.0",
+    "simple-git": "^1.126.0"
   }
 }
