@@ -1,3 +1,7 @@
 # sv-test
 
-1
+tf1: 0
+
+up: 1
+
+fix: 0
