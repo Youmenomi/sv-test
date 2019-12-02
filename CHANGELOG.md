@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0-alpha.2](https://github.com/Youmenomi/sv-test/compare/v1.4.0-alpha.1...v1.4.0-alpha.2) (2019-12-02)
+
+
+### Features
+
+* 4 ([3cfdc06](https://github.com/Youmenomi/sv-test/commit/3cfdc06132eda9ae94733e6bab85a90df32f9761))
+
 ## [1.4.0-alpha.1](https://github.com/Youmenomi/sv-test/compare/v1.4.0-alpha.0...v1.4.0-alpha.1) (2019-12-02)
 
 
