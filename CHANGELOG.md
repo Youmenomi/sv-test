@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-alpha.0](https://github.com/Youmenomi/sv-test/compare/v1.5.0-ddeerr.0...v1.6.0-alpha.0) (2019-12-03)
+
+
+### Features
+
+* 7 ([b81c85d](https://github.com/Youmenomi/sv-test/commit/b81c85d58742d2d99ca90cdb354feba49c472c6a))
+
 ## [1.5.0-alpha.0](https://github.com/Youmenomi/sv-test/compare/v1.5.0-ddeerr.0...v1.5.0-alpha.0) (2019-12-03)
 
 
