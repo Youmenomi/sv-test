@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0-alpha.1](https://github.com/Youmenomi/sv-test/compare/v1.5.0-alpha.0...v1.5.0-alpha.1) (2019-12-03)
+
+
+### Features
+
+* 6 ([fb5ee6f](https://github.com/Youmenomi/sv-test/commit/fb5ee6fb2aec546cbc9bb402a32e56f479cffa16))
+
+
+### Bug Fixes
+
+* 4 ([ba4d873](https://github.com/Youmenomi/sv-test/commit/ba4d87328da894eb74c9cf5ab477c3c439b37eaa))
+
 ## [1.5.0-beta.0](https://github.com/Youmenomi/sv-test/compare/v1.5.0-alpha.0...v1.5.0-beta.0) (2019-12-02)
 
 ## [1.5.0-alpha.0](https://github.com/Youmenomi/sv-test/compare/v1.5.0-beta.0...v1.5.0-alpha.0) (2019-12-02)
