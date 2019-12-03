@@ -1,9 +1,11 @@
 console.log("[index.js]", '-----!!!!');
 const execSync = require('child_process').execSync;
 
+console.log(execSync(`git tag --merged feature/ddeerr -l 'v*'`).toString());
+
 const conventionalRecommendedBump = require(`conventional-recommended-bump`);
 conventionalRecommendedBump({
-    // preset: `angular`
+    preset: `angular`
   }, (error, recommendation) => {
     console.log(recommendation.releaseType); // 'major'
   });
