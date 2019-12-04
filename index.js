@@ -3,12 +3,32 @@ const execSync = require('child_process').execSync;
 
 console.log(execSync(`git tag --merged feature/ddeerr -l 'v*'`).toString());
 
-const conventionalRecommendedBump = require(`conventional-recommended-bump`);
-conventionalRecommendedBump({
-    preset: `angular`
-  }, (error, recommendation) => {
-    console.log(recommendation.releaseType); // 'major'
-  });
+// const conventionalRecommendedBump = require(`conventional-recommended-bump`);
+// conventionalRecommendedBump({
+//     preset: `angular`
+//   }, (error, recommendation) => {
+//     console.log(recommendation.releaseType); // 'major'
+//   });
+
+
+// //   import bump from 'standard-version/lib/lifecycles/bump';
+//   const bump = require('standard-version/lib/lifecycles/bump');
+//   let args = {};
+//     args.silent = true;
+//     args.dryRun = true;
+//     args.skip = {};
+//     args.skip.changelog = true;
+//     // args = { ...args, ...opt };
+
+
+//     (async ()=>{
+        
+//         try {
+//             console.log("bbbbb--", await bump(args, '1.1.1.2'));
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     })()
 
 // var readline = require('readline');
 // var rl = readline.createInterface({
