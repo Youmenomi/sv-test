@@ -1,7 +1,41 @@
 console.log("[index.js]", '-----!!!!');
 const execSync = require('child_process').execSync;
+const readline = require('readline');
 
-console.log(execSync(`git tag --merged feature/ddeerr -l 'v*'`).toString());
+const exec  = require('child_process').exec;
+exec('git flow feature start -h', function(error, stdout, stderr) {
+    if (error) {
+        console.log('exec error: ', error.message);
+    }else{
+       console.log(stdout)
+    }
+});
+
+// process.output.on('data', (e)=>{
+//     console.log(e);
+// });
+
+// const rl = readline.createInterface({
+//     input: console.,
+//     output: process.stdout
+//   });
+// rl.on('line', (input) => {
+//     console.log(`接收到：${input}`);
+//   });
+
+// let ii;
+try {
+    // execSync(`npm view gfrp dist-tags -json`, { stdio: 'ignore' })
+
+    ii = execSync(`git flow feature start -h`, { stdio: 'inherit' });
+} catch (error) {
+    // console.log('error!!', error.message);
+}
+
+// console.log('ii', process.stdout);
+
+
+// console.log();
 
 // const conventionalRecommendedBump = require(`conventional-recommended-bump`);
 // conventionalRecommendedBump({
