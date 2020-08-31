@@ -1,21 +1,105 @@
-MIT License
+type ProviderType<TCandidates extends Readonly<string[]>> = (
+  candidates: TCandidates
+) => Promise<TCandidates[number] | null> | (TCandidates[number] | null);
 
-Copyright (c) 2019 Dean Yao
+type FetcherType = (lang: string) => Promise<any> | any;
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+type RecorderType = {
+  get: () => Promise<string | null> | (string | null);
+  set: (lang: string) => Promise<any> | any;
+  clear: () => Promise<any> | any;
+};
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+export function createProvider(
+  priorities: Readonly<string[]> = navigator.languages
+) {
+  return <TCandidates extends Readonly<string[]>>(candidates: TCandidates) => {
+    let found: TCandidates[number] | null = null;
+    priorities.some((lang) => {
+      if (candidates.includes(lang)) {
+        found = lang;
+        return true;
+      }
+      lang = lang.split('-')[0];
+      if (candidates.includes(lang)) {
+        found = lang;
+        return true;
+      }
+      return false;
+    });
+    return found as TCandidates[number] | null;
+  };
+}
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+const LOCAL_STORAGE_KEY = 'localStorage-find-language-key';
+export const defRecorder = {
+  get: () => {
+    return localStorage.getItem(LOCAL_STORAGE_KEY);
+  },
+  set: (lang: string) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, lang);
+  },
+  clear: () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+  },
+};
+
+export class Languager<TCandidates extends Readonly<string[]>> {
+  _candidates: TCandidates;
+  _provider: ProviderType<TCandidates>;
+  _fetcher?: FetcherType;
+  _recorder: RecorderType;
+  _record: boolean;
+
+  _initialized = false;
+  _lang?: TCandidates[number];
+  constructor(
+    candidates: TCandidates,
+    provider: ProviderType<TCandidates> = createProvider(),
+    fetcher?: FetcherType,
+    recorder: RecorderType = defRecorder,
+    record = true
+  ) {
+    this._candidates = candidates;
+    this._provider = provider;
+    this._fetcher = fetcher;
+    this._recorder = recorder;
+    this._record = record;
+    //     this._finder = finder;
+    //     // const uu = defaults(option, defOptions);
+    //     this._options = option as any;
+    //   }
+  }
+
+  protected async initialize() {
+    if (this._initialized) return;
+
+    // const { record, recorder } = this._options;
+    if (this._record) {
+      const lang = await this._recorder.get();
+      if (lang !== null) {
+        this._lang = lang;
+        return;
+      }
+    }
+    const found = await this._provider(this._candidates);
+    // console.log(found, "foundfoundfound");
+    if (!found) {
+      throw Error('Provider cannot give a language code.');
+    }
+    this._lang = found;
+
+    this._initialized = true;
+  }
+}
+
+// export class UserLanguage<TLang extends string> {
+//   _finder: FinderType<TLang>;
+//   _options: Required<OptionsType>;
+//   _lang: TLang | undefined;
+//   _initialized = false;
+//   constructor(finder: FinderType<TLang>, option: OptionsType = defOptions) {
+//     this._finder = finder;
+//     // const uu = defaults(option, defOptions);
+//     this._options = option as any;
+//   }
